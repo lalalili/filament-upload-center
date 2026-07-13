@@ -1,0 +1,16 @@
+{
+  "name": "@lalalili/filament-upload-center",
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": "./resources/js/upload-center.js"
+  },
+  "dependencies": {
+    "@uppy/aws-s3": "^5.1.0",
+    "@uppy/core": "^5.2.0",
+    "@uppy/golden-retriever": "^5.2.1"
+  },
+  "peerDependencies": {
+    "vite": "^8.0.0"
+  }
+}
