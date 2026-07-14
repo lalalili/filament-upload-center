@@ -2,6 +2,16 @@
 
 Reusable browser-to-S3 upload queue for Filament hosts. The package owns the Uppy queue, progress rendering, retry and browser restore metadata; each host supplies an adapter for its own session API.
 
+## Install
+
+Until the npm registry release is configured, install the public GitHub release directly:
+
+```bash
+pnpm add @lalalili/filament-upload-center@github:lalalili/filament-upload-center#v0.1.11
+```
+
+The package requires Vite and Uppy. Its declared dependencies install the supported Uppy modules automatically.
+
 ## Host contract
 
 Call `createUploadCenter(root, { adapter, allowedFileTypes, context })`. The adapter creates a server-side session, returns direct-upload parameters or multipart signatures, lists persisted parts, completes, cancels and polls its own domain status. Browser uploads never receive cloud credentials or application API tokens.

@@ -1,6 +1,6 @@
 {
   "name": "@lalalili/filament-upload-center",
-  "version": "0.1.0",
+  "version": "0.1.11",
   "type": "module",
   "exports": {
     ".": "./resources/js/upload-center.js"
