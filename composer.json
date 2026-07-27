@@ -1,22 +1,46 @@
 {
-  "name": "lalalili/filament-upload-center",
-  "description": "Reusable Filament upload queue UI backed by Uppy and host adapters.",
-  "type": "library",
-  "license": "MIT",
-  "require": {
-    "php": "^8.4",
-    "filament/filament": "^5.0"
-  },
-  "autoload": {
-    "psr-4": {
-      "Lalalili\\FilamentUploadCenter\\": "src/"
+    "name": "lalalili/filament-upload-center",
+    "description": "Reusable Filament upload queue UI backed by Uppy and host adapters.",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^8.4",
+        "filament/filament": "^5.0"
+    },
+    "require-dev": {
+        "lalalili/package-testing-support": "^1.0",
+        "orchestra/testbench": "^11.0",
+        "pestphp/pest": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lalalili\\FilamentUploadCenter\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Lalalili\\FilamentUploadCenter\\Tests\\": "tests/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/lalalili/package-testing-support.git"
+        }
+    ],
+    "scripts": {
+        "test": "pest --compact"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Lalalili\\FilamentUploadCenter\\FilamentUploadCenterServiceProvider"
+            ]
+        }
     }
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "Lalalili\\FilamentUploadCenter\\FilamentUploadCenterServiceProvider"
-      ]
-    }
-  }
 }

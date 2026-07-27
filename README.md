@@ -18,6 +18,26 @@ Call `createUploadCenter(root, { adapter, allowedFileTypes, context })`. The ada
 
 For multipart resume, the host must retain its upload session and expose an authoritative `listParts` response. When a browser no longer has a source file, prompt the user to reselect the same file and continue from server-confirmed parts.
 
+## DOM contract
+
+`createUploadCenter(root, options)` looks up five child elements inside `root`
+with `querySelector`. **The host must render markup providing all of them** —
+the package's own `filament-upload-center::mount` view renders only the outer
+container (`data-filament-upload-center`), not the inner structure.
+
+| Attribute | Purpose |
+|---|---|
+| `data-upload-input` | The `<input type="file">` the queue reads selections from |
+| `data-upload-dropzone` | Drop target for drag-and-drop uploads |
+| `data-upload-list` | Container the per-file rows are rendered into |
+| `data-upload-count` | Element showing the queued/completed counter |
+| `data-upload-notifications` | Container for inline status and error messages |
+
+Missing any of these makes the queue fail silently rather than error, so the
+contract is pinned by `tests/Unit/DomContractTest.php`: it parses the selectors
+out of `resources/js/upload-center.js` and asserts they match this table
+exactly. Changing a selector on either side fails CI.
+
 ## Host dependencies
 
 Install `@uppy/core`, `@uppy/aws-s3` and `@uppy/golden-retriever` in the host build. Add the package source as a Vite dependency or published package, and keep the host's CSRF/session requests same-origin.

@@ -1,0 +1,12 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  ci:
+    uses: lalalili/.github/.github/workflows/php-package-ci.yml@main
+    secrets: inherit
+    with:
+      php-versions: "['8.4']"
+      run-validate: false
+      run-analyse: false
